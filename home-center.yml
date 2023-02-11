@@ -2,21 +2,26 @@ header:
   version: 13
 # The machine as it is written into the `local.conf` of bitbake.
 machine: qemuarm64
+
 # The distro name as it is written into the `local.conf` of bitbake.
-distro: poky
+distro: homely
+
 target: core-image-minimal
+
 repos:
-  # home-center:
-  # Here we include a list of layers from the poky repository to the
-  # bblayers.conf:
+  home-center:
+    path: "layers/meta-home-center"
+
+  home-center-distro:
+    path: "layers/meta-home-center-distro"
+
   poky:
     url: "https://git.yoctoproject.org/git/poky"
     refspec: kirkstone
     layers:
       meta:
-      meta-poky:
-      meta-yocto-bsp:
     path: "sources/poky"
+
 local_conf_header:
   home-center: |
     DL_DIR = "/cache/downloads"
