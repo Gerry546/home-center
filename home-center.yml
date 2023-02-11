@@ -2,9 +2,12 @@ header:
   version: 13
 # The machine as it is written into the `local.conf` of bitbake.
 machine: qemuarm64
+
 # The distro name as it is written into the `local.conf` of bitbake.
 distro: homely
+
 target: core-image-minimal
+
 repos:
   home-center:
     path: "layers/meta-home-center"
@@ -18,6 +21,7 @@ repos:
     layers:
       meta:
     path: "sources/poky"
+
 local_conf_header:
   home-center: |
     DL_DIR = "/cache/downloads"
