@@ -17,8 +17,6 @@ repos:
     refspec: kirkstone
     layers:
       meta:
-      meta-poky:
-      meta-yocto-bsp:
     path: "sources/poky"
 local_conf_header:
   home-center: |
