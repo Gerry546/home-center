@@ -5,6 +5,7 @@ TODO
 ====
 
 #. Write this documentation
+#. Strip DISTRO_FEATURES_DEFAULT
 
 Goal of the project
 ===================
