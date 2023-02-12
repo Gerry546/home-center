@@ -1,0 +1,6 @@
+header:
+  version: 13
+  includes:
+  - kas/common-kas.yml
+# The machine as it is written into the `local.conf` of bitbake.
+machine: qemuarm64

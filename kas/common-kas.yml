@@ -1,12 +1,10 @@
 header:
   version: 13
-# The machine as it is written into the `local.conf` of bitbake.
-machine: qemuarm64
 
 # The distro name as it is written into the `local.conf` of bitbake.
 distro: homely
 
-target: core-image-minimal
+target: home-center-image
 
 repos:
   home-center:
