@@ -4,8 +4,6 @@ header:
 # The distro name as it is written into the `local.conf` of bitbake.
 distro: homely
 
-target: home-center-image
-
 repos:
   home-center:
     path: "layers/meta-home-center"
@@ -19,6 +17,18 @@ repos:
     layers:
       meta:
     path: "sources/poky"
+
+  meta-rauc:
+    url: "https://github.com/rauc/meta-rauc.git"
+    refspec: kirkstone
+    path: "sources/meta-rauc"
+
+  meta-rauc-community:
+    url: "https://github.com/rauc/meta-rauc-community.git"
+    refspec: kirkstone
+    layers:
+      meta-rauc-qemux86:
+    path: "sources/meta-rauc-community"
 
 local_conf_header:
   home-center: |

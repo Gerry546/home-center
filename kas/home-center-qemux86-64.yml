@@ -3,4 +3,8 @@ header:
   includes:
   - kas/common-kas.yml
 # The machine as it is written into the `local.conf` of bitbake.
-machine: qemuarm64
+machine: qemux86-64
+
+target: 
+  - home-center-image 
+  - home-center-bundle-qemu
