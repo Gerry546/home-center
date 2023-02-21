@@ -23,12 +23,12 @@ repos:
     refspec: kirkstone
     path: "sources/meta-rauc"
 
-  meta-rauc-community:
-    url: "https://github.com/rauc/meta-rauc-community.git"
-    refspec: kirkstone
-    layers:
-      meta-rauc-qemux86:
-    path: "sources/meta-rauc-community"
+  # meta-rauc-community:
+  #   url: "https://github.com/rauc/meta-rauc-community.git"
+  #   refspec: kirkstone
+  #   layers:
+  #     meta-rauc-qemux86:
+  #   path: "sources/meta-rauc-community"
 
 local_conf_header:
   home-center: |
