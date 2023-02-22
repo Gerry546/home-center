@@ -4,8 +4,6 @@ header:
 # The distro name as it is written into the `local.conf` of bitbake.
 distro: homely
 
-target: home-center-image
-
 repos:
   home-center:
     path: "layers/meta-home-center"
@@ -20,6 +18,12 @@ repos:
       meta:
     path: "sources/poky"
 
+  meta-rauc:
+    url: "https://github.com/rauc/meta-rauc.git"
+    refspec: kirkstone
+    path: "sources/meta-rauc"
+
+    
 local_conf_header:
   home-center: |
     DL_DIR = "/cache/downloads"
