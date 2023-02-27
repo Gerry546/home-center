@@ -3,7 +3,7 @@ LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda
 
 inherit bundle
 
-RAUC_BUNDLE_COMPATIBLE = "qemu86-64 home-center"
+RAUC_BUNDLE_COMPATIBLE = "Home Center"
 
 RAUC_BUNDLE_FORMAT = "verity"
 

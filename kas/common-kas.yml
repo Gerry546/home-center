@@ -23,7 +23,6 @@ repos:
     refspec: kirkstone
     path: "sources/meta-rauc"
 
-    
 local_conf_header:
   home-center: |
     DL_DIR = "/cache/downloads"
