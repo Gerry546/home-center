@@ -1,0 +1,12 @@
+header:
+  version: 13
+  includes:
+  - kas/hometerminal-kas.yml
+  - kas/common-kas.yml
+  
+
+# The machine as it is written into the `local.conf` of bitbake.
+machine: hometerminal-cm4
+
+target: 
+  - core-image-minimal
