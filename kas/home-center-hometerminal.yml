@@ -9,4 +9,4 @@ header:
 machine: hometerminal-cm4
 
 target: 
-  - core-image-minimal
+  - home-center-debug-image

@@ -30,7 +30,6 @@ local_conf_header:
     PACKAGE_CLASSES = "package_ipk"
     INHERIT += "buildhistory"
     BUILDHISTORY_COMMIT = "1"
-    EXTRA_IMAGE_FEATURES ?= "debug-tweaks"
     USER_CLASSES ?= "buildstats"
     PATCHRESOLVE = "noop"
     BB_DISKMON_DIRS ??= "\
