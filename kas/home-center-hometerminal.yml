@@ -10,3 +10,4 @@ machine: hometerminal-cm4
 
 target: 
   - home-center-debug-image
+  - home-center-bundle-debug-aarch64

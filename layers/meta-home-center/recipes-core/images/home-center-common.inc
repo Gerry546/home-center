@@ -23,6 +23,9 @@ IMAGE_INSTALL:hometerminal-cm4 = "\
     rauc \
     u-boot-fw-utils \
     u-boot \
+    \
+    openssh-sshd \
+    openssh-scp \
 "
 
 IMAGE_FEATURES:qemu-homely-x86-64 = "\
