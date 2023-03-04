@@ -46,9 +46,10 @@ fi
 fatload mmc 0:1 ${kernel_addr_r} @@KERNEL_IMAGETYPE@@
 if test ! -e mmc 0:1 uboot.env; then saveenv; fi;
 
-# Get the initramfs
-fatload mmc 0:1 ${ramdisk_addr_r} hometerminal-rescue-image.rootfs.cpio.u-boot
-
 # Now actually boot the system
 @@KERNEL_BOOTCMD@@ ${kernel_addr_r} - ${fdt_addr}
+
+# Something went wrong, boot initramfs
+# Get the initramfs
+fatload mmc 0:1 ${ramdisk_addr_r} hometerminal-rescue-image.rootfs.cpio.u-boot
 #@@KERNEL_BOOTCMD@@ ${kernel_addr_r} ${ramdisk_addr_r} ${fdt_addr}

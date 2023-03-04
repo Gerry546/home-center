@@ -1,10 +1,35 @@
 inherit core-image
 
-IMAGE_INSTALL = "\
+IMAGE_INSTALL:qemu-homely-x86-64 = "\
     packagegroup-core-boot \
     ${CORE_IMAGE_EXTRA_INSTALL} \
     \
     rauc \
+"
+
+IMAGE_INSTALL:hometerminal-cm4 = "\
+    packagegroup-core-boot \
+    ${CORE_IMAGE_EXTRA_INSTALL} \
+    kernel-modules \
+    reterminal-screen-mod \
+    reterminal-lightsensor-mod \
+    reterminal-accelerometer-mod \
+    \
+    linux-firmware-rpidistro-bcm43455 \
+    \
+    weston \
+    weston-init \
+    \
+    rauc \
+    u-boot-fw-utils \
+    u-boot \
+"
+
+IMAGE_FEATURES:qemu-homely-x86-64 = "\
+"
+
+IMAGE_FEATURES:hometerminal-cm4 = "\
+    weston \
 "
 
 IMAGE_LINGUAS = " "
@@ -12,7 +37,6 @@ IMAGE_LINGUAS = " "
 IMAGE_ROOTFS_SIZE ?= "8192"
 IMAGE_ROOTFS_EXTRA_SPACE:append = "${@bb.utils.contains("DISTRO_FEATURES", "systemd", " + 4096", "", d)}"
 
-IMAGE_FSTYPES += "wic ext4 tar.bz2"
 IMAGE_NAME_SUFFIX = ""
 
 # Optimizations for RAUC adaptive method 'block-hash-index'
