@@ -124,6 +124,13 @@ Reboot the system::
 
     # systemctl reboot
 
+An alternative way is to use the streaming option which is enabled. In this case you need to host a webserver with the update bundle.
+I use https://www.npmjs.com/package/http-server for this. To enable this do::
+    $ http-server ./public -p 8000 -a <ip address>
+
+Then on the system itself you can do the following::
+    # rauc install http://<ip address>:8000/<home-center-bundle-debug-aarch64-hometerminal-cm4>.raucb
+
 Running the Hometerminal system
 ===============================
 
