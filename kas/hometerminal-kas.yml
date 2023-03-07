@@ -1,0 +1,18 @@
+header:
+  version: 13
+
+repos:
+  meta-home-center-bsp:
+    path: "layers/meta-home-center-bsp"
+
+  meta-raspberrypi:
+    url: "https://git.yoctoproject.org/meta-raspberrypi"
+    refspec: kirkstone
+    path: "sources/meta-raspberrypi"
+
+  meta-openembedded:
+    path: "sources/meta-openembedded"
+    refspec: kirkstone
+    url: "https://git.openembedded.org/meta-openembedded"
+    layers:
+      meta-oe:

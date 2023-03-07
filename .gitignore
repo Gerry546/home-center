@@ -2,3 +2,5 @@
 build
 .vscode
 *.pem
+wpa_supplicant-nl80211-wlan0.conf
+public

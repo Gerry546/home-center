@@ -6,6 +6,17 @@ TODO
 
 #. Write this documentation
 #. Strip DISTRO_FEATURES_DEFAULT
+#. Create own toolchain file to load
+#. Trim DISTRO_FEATURES_DEFAULT
+#. Fix that it is possible to load the device tree via tftp
+#. Light sensor always returns 0?
+#. Ensure power button actually shuts down the system
+#. Change password on first login
+#. Check if this is yocto compatible
+#. Experiment with initramFS image
+#. Unchecked hardware See https://wiki.seeedstudio.com/reTerminal-hardware-interfaces-usage/#hardware-overview
+   Micro SD card slot
+   Micro HDMI port
 
 Goal of the project
 ===================
@@ -22,6 +33,18 @@ We will use Kas so we need Python 3. To not polute the host we create a virtual 
     $ python3 -m venv .venv
     $ source .venv/bin/activate
     $ pip3 install kas
+
+For running on the target we need to have programs capable of flashing the MMC memory of the reterminal.
+Install ``rpiboot`` by following the steps detailed here: https://github.com/raspberrypi/usbboot#building
+
+If you plan on using TFTP/NFS then install the following::
+    $ sudo apt install tftpd-hpa
+    $ sudo apt install nfs-kernel-server
+
+And adjust the file `\etc\exports` to properly export the directory.
+
+And configure your network manager on your host to host the nfsroot directory::
+    $ nmcli con add type ethernet ifname en... ip4 192.168.0.1/24
 
 Running the Qemux86-64 system
 =============================
@@ -100,3 +123,49 @@ Install the Bundle::
 Reboot the system::
 
     # systemctl reboot
+
+An alternative way is to use the streaming option which is enabled. In this case you need to host a webserver with the update bundle.
+I use https://www.npmjs.com/package/http-server for this. To enable this do::
+    $ http-server ./public -p 8000 -a <ip address>
+
+Then on the system itself you can do the following::
+    # rauc install http://<ip address>:8000/<home-center-bundle-debug-aarch64-hometerminal-cm4>.raucb
+
+Running the Hometerminal system
+===============================
+
+Building the system
+~~~~~~~~~~~~~~~~~~~
+To build the system source KAS and run the following commands::
+
+    $ kas build kas/home-center-hometerminal-cm4.yml --update
+
+When building the system you have the option to use TFTP and NFS. If you want to use it adjust this parameter in the distro file.
+Use this only for debugging since it requires a live system next to it.
+
+..code:: console
+
+    ENABLE_TFTP_NFS = "1"
+
+Flashing the system
+~~~~~~~~~~~~~~~~~~~
+
+No TFTP/NFS
+""""""""""""
+When not building with TFTP, usually in your final image, or if you want to update the devicetree (since raspberry pi has a different boot sequence), 
+you can flash it via this way:
+
+#. Unscrew the back as dictated in on the website here: https://wiki.seeedstudio.com/reTerminal/#flash-raspberry-pi-os-64-bit-ubuntu-os-or-other-os-to-emmc
+#. Connect a debug UART to the pins on the side of the reterminal (number 6, 8 and 10): https://wiki.seeedstudio.com/reTerminal/#pinout-diagram
+#. Start picocom: :code:`picocom -b 115200 /dev/ttyUSB0`
+#. Start rpiboot: :code:`sudo ~/tools/usbboot/rpiboot`
+#. Connect a USB cable from your workstation to your reterminal. It should boot ``rpiboot`` should be able to finish.
+#. Check where the drives are in ``/dev`` and unsure they are unmounted (on my station it is always ``/dev/sdb``): :code:`sudo umount /dev/sdb*`
+#. Copy the new image in .wic format to the reterminal: :code:`sudo bmaptool copy tmp/deploy/images/hometerminal-cm4/hometerminal-image-hometerminal-cm4.rootfs.wic /dev/sdb`
+#. If it is done, unplug the reterminal, flip the boot switch and boot again. It should now boot normally.
+
+With TFTP/NFS
+""""""""""""""
+First flash the system using the system above once since the bootloader needs to be present.
+After building run the ::code:`tftp_nfs.sh` script located in the utils folder to copy everything.
+Now when booting the system the target should retrieve the kernel and rootfs from the host.
