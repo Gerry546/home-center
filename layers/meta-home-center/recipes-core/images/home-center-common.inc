@@ -5,6 +5,8 @@ IMAGE_INSTALL:qemu-homely-x86-64 = "\
     ${CORE_IMAGE_EXTRA_INSTALL} \
     \
     rauc \
+    \
+    python3-homeassistant \
 "
 
 IMAGE_INSTALL:hometerminal-cm4 = "\
