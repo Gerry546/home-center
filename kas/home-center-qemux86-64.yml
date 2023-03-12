@@ -6,5 +6,5 @@ header:
 machine: qemu-homely-x86-64
 
 target: 
-  - home-center-image 
+  - home-center-debug-image 
   - home-center-bundle-qemu
