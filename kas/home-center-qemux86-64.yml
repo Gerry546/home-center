@@ -7,4 +7,4 @@ machine: qemu-homely-x86-64
 
 target: 
   - home-center-debug-image 
-  - home-center-bundle-qemu
+  - home-center-bundle-debug-qemu
