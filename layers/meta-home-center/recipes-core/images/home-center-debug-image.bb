@@ -20,3 +20,5 @@ IMAGE_INSTALL:hometerminal-cm4 += "\
     strace \
     wayland-utils \
 "
+
+QB_SLIRP_OPT="-netdev user,id=net0,hostfwd=tcp::3218-:8123,hostfwd=tcp::2222-:22"
