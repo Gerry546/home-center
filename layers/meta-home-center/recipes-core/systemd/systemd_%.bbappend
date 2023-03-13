@@ -1,3 +1,3 @@
 PACKAGECONFIG:append = " networkd resolved"
 
-RDEPENDS:${PN}:append = " wpa-supplicant "
+RDEPENDS:${PN}:append:hometerminal-cm4 = " wpa-supplicant "
